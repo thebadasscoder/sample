@@ -26,7 +26,7 @@ class Articles extends Component{
 								<h4 key={indx}>{val.title}</h4>
 								</a>
 							</ul>
-							<button className="save" onClick={(e)=>this.handleClick(e, val.title, val.url)}
+							<button type="button" className="btn btn-primary btn-sm" onClick={(e)=>this.handleClick(e, val.title, val.url)}
 							>Save it for later</button>
 						</li>
 					</div>
@@ -49,7 +49,7 @@ class Articles extends Component{
 	render(){
 		return(
 			<div>
-			<h1>Latest News</h1>
+			<h1 className="heading">Latest News</h1>
 			<center>{this.state.allPosts}</center>
 			</div>
 
