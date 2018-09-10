@@ -42,11 +42,11 @@ class Articles extends Component{
 
 		alert('Awesome! It Saved.')
 
+		//Open up the dev tools to see the items saved once clicked
 		console.log(this.state.database, 'Database')
 		console.log(this.state.database.saved, 'Saved items!')
 	}
 	render(){
-		// console.log(this.state.database)
 		return(
 			<div>
 			<h1>Latest News</h1>
