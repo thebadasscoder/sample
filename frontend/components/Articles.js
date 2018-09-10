@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import css from '../css/app.css'
+import css from '../css/app.css';
+import db from '../../backend/db.js';
 
 class Articles extends Component{
 	constructor(){
 		super();
 		this.state = {
-			allPosts: []
+			allPosts: [], database:db
 		}
 	}
 	//Requesting Data from News API 
@@ -17,16 +18,39 @@ class Articles extends Component{
 		.then(data =>{
 			//Pulling out just the title and link 
 			let posts = data.articles.map((val, indx)=>{ 
-				return(<div key={indx}><li key={indx}><ul className="news"><a href={val.url} key={indx}><h4 key={indx}>{val.title}</h4></a></ul><button className="save">Save</button></li></div>)
+				return(
+					<div key={indx}>
+						<li key={indx}>
+							<ul className="news">
+								<a href={val.url} key={indx}>
+								<h4 key={indx}>{val.title}</h4>
+								</a>
+							</ul>
+							<button className="save" onClick={(e)=>this.handleClick(e, val.title, val.url)}
+							>Save it for later</button>
+						</li>
+					</div>
+				)
 			})
 			this.setState({allPosts: posts})
 		})
 	}
+	handleClick(e, title, url){
+		e.preventDefault();
+		// Once clicked it will push both the title and link to the database created in the backend folder 
+		this.state.database.saved.push(title, url)
+
+		alert('Awesome! It Saved.')
+
+		console.log(this.state.database, 'Database')
+		console.log(this.state.database.saved, 'Saved items!')
+	}
 	render(){
+		// console.log(this.state.database)
 		return(
 			<div>
 			<h1>Latest News</h1>
-			<center><p>{this.state.allPosts}</p></center>
+			<center>{this.state.allPosts}</center>
 			</div>
 
 		)
