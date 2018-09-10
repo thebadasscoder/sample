@@ -14,7 +14,7 @@ class Articles extends Component{
 			return results.json();
 		})
 		.then(data =>{
-			//Pulling out just the title and link from the data
+			//Pulling out just the title and link 
 			let posts = data.articles.map((val, indx)=>{
 				return(<li key={indx}><a href={val.url} key={indx}><h4 key={indx}>{val.title}</h4></a></li>)
 			})
