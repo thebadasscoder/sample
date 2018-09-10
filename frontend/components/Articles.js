@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import css from '../css/app.css'
 
 class Articles extends Component{
 	constructor(){
@@ -15,8 +16,8 @@ class Articles extends Component{
 		})
 		.then(data =>{
 			//Pulling out just the title and link 
-			let posts = data.articles.map((val, indx)=>{
-				return(<li key={indx}><a href={val.url} key={indx}><h4 key={indx}>{val.title}</h4></a></li>)
+			let posts = data.articles.map((val, indx)=>{ 
+				return(<div key={indx}><li key={indx}><ul className="news"><a href={val.url} key={indx}><h4 key={indx}>{val.title}</h4></a></ul><button className="save">Save</button></li></div>)
 			})
 			this.setState({allPosts: posts})
 		})
@@ -24,8 +25,8 @@ class Articles extends Component{
 	render(){
 		return(
 			<div>
-			<center><h1>Articles</h1></center>
-			<center>{this.state.allPosts}</center>
+			<h1>Latest News</h1>
+			<center><p>{this.state.allPosts}</p></center>
 			</div>
 
 		)
